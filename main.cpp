@@ -2,6 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <iomanip>
+
+using namespace std;
 
 struct Weapon {
     std::string Weapon_name;
@@ -11,7 +14,7 @@ struct Weapon {
     std::string Primary_stats;
 };
 
-void printWeaponData(std::vector<Weapon>& weapon) {
+void showWeaponData(std::vector<Weapon>& weapon) {
     std::ifstream inFile;
     inFile.open("C:/Users/doria/OneDrive - Dundalk Institute of Technology/Year 2/C++/CA1/CA1_text.csv");
 
@@ -41,12 +44,31 @@ void printWeaponData(std::vector<Weapon>& weapon) {
     inFile.close();
     std::cout <<"Data loaded"<< std::endl;
 }
+
+void printWeapons(const std::vector<Weapon> &weapon) {
+    std::cout << std::left << std::setw(30) << "Weapon Name"
+    << std::setw(25) << "Type"
+    << std::setw(10) << "Damage"
+    << std::setw(10) << "Weight"
+    << std::setw(30) << "Primary Stats" << std::endl;
+
+    for (const auto& weapon : weapon) {
+        std::cout << std::left << std::setw(30) << weapon.Weapon_name
+        << std::setw(25) << weapon.Weapon_type
+        << std::setw(10) << weapon.Damage
+        << std::setw(10) << weapon.Weight
+        << std::setw(30) << weapon.Primary_stats << std::endl;
+    }
+}
+
 int main(){
     std::vector<Weapon> weapons;
 
-    printWeaponData(weapons);
+    showWeaponData(weapons);
 
     std::cout << "Total weapons loaded: " << weapons.size() << std::endl;
+
+    printWeapons(weapons);
 
     return 0;
 }
