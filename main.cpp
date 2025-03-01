@@ -61,14 +61,24 @@ void printWeapons(const std::vector<Weapon> &weapon) {
     }
 }
 
+void findWeapon(const std::vector<Weapon> &weapon) {
+    std::string id = "Katana";
+    for (const auto& weapon : weapon) {
+        if (weapon.Weapon_type == id) {
+            std::cout << std::left << std::setw(30) << weapon.Weapon_name
+            << std::setw(25) << weapon.Weapon_type
+            << std::setw(10) << weapon.Damage
+            << std::setw(10) << weapon.Weight
+            << std::setw(30) << weapon.Primary_stats << std::endl;
+        }
+    }
+}
+
 int main(){
     std::vector<Weapon> weapons;
-
     showWeaponData(weapons);
-
     std::cout << "Total weapons loaded: " << weapons.size() << std::endl;
-
     printWeapons(weapons);
-
+    findWeapon(weapons);
     return 0;
 }
