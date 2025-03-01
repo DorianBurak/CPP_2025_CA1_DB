@@ -90,6 +90,24 @@ void countWeapons(const std::vector<Weapon> &weapon) {
     cout << "Total number of " << id<<  " weapons: " << count << std::endl;
 }
 
+void HigLowAvgData(const std::vector<Weapon> &weapon){
+    int high= 0, low= 999, count = 0;
+    double avg = 0;
+    for (const auto& weapon:weapon) {
+        if (weapon.Damage > high) {
+            high = weapon.Damage;
+        }
+        if (weapon.Damage < low) {
+            low = weapon.Damage;
+        }
+        count++;
+        avg = avg + weapon.Damage;
+    }
+    avg = avg / count;
+    cout << "The highest damage is "<< high << endl;
+    cout << "The lowest damage is "<< low << endl;
+    cout << "The average damage is "<< avg << endl;
+}
 int main(){
     std::vector<Weapon> weapons;
     showWeaponData(weapons);
@@ -97,5 +115,6 @@ int main(){
     printWeapons(weapons);
     findWeapon(weapons);
     countWeapons(weapons);
+    HigLowAvgData(weapons);
     return 0;
 }
