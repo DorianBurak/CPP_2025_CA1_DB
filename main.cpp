@@ -108,6 +108,20 @@ void HigLowAvgData(const std::vector<Weapon> &weapon){
     cout << "The lowest damage is "<< low << endl;
     cout << "The average damage is "<< avg << endl;
 }
+
+void keyWordSearch(const std::vector<Weapon> &weapon) {
+    std::string id = "Night";
+    for (const auto& weapon:weapon) {
+        if (weapon.Weapon_name.find(id) != std::string::npos) {
+            std::cout << std::left << std::setw(30) << weapon.Weapon_name
+            << std::setw(25) << weapon.Weapon_type
+            << std::setw(10) << weapon.Damage
+            << std::setw(10) << weapon.Weight
+            << std::setw(30) << weapon.Primary_stats << std::endl;
+        }
+    }
+}
+
 int main(){
     std::vector<Weapon> weapons;
     showWeaponData(weapons);
@@ -116,5 +130,6 @@ int main(){
     findWeapon(weapons);
     countWeapons(weapons);
     HigLowAvgData(weapons);
+    keyWordSearch(weapons);
     return 0;
 }
