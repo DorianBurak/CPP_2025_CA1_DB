@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -74,7 +75,7 @@ void findWeapon(const std::vector<Weapon> &weapon) {
     }
 }
 
-void countWeapons(const std::vector<Weapon> &weapon) {
+int countWeapons(const std::vector<Weapon> &weapon) {
     std::string id = "Longbow";
     int count = 0;
     for (const auto& weapon : weapon) {
@@ -88,9 +89,10 @@ void countWeapons(const std::vector<Weapon> &weapon) {
         }
     }
     cout << "Total number of " << id<<  " weapons: " << count << std::endl;
+    return count;
 }
 
-void HigLowAvgData(const std::vector<Weapon> &weapon){
+double HigLowAvgData(const std::vector<Weapon> &weapon){
     int high= 0, low= 999, count = 0;
     double avg = 0;
     for (const auto& weapon:weapon) {
@@ -107,6 +109,7 @@ void HigLowAvgData(const std::vector<Weapon> &weapon){
     cout << "The highest damage is "<< high << endl;
     cout << "The lowest damage is "<< low << endl;
     cout << "The average damage is "<< avg << endl;
+    return avg;
 }
 
 void keyWordSearch(const std::vector<Weapon> &weapon) {
@@ -122,14 +125,26 @@ void keyWordSearch(const std::vector<Weapon> &weapon) {
     }
 }
 
+// void sort(const std::vector<Weapon> &weapon) {
+//     std::sort(weapon.begin(), weapon.end(), [](const weapon &a, const weapon &b));
+//     for (const auto& weapon : weapon) {
+//         std::cout << std::left << std::setw(30) << weapon.Weapon_name
+//         << std::setw(25) << weapon.Weapon_type
+//         << std::setw(10) << weapon.Damage
+//         << std::setw(10) << weapon.Weight
+//         << std::setw(30) << weapon.Primary_stats << std::endl;
+//     }
+// }
+
 int main(){
     std::vector<Weapon> weapons;
     showWeaponData(weapons);
     std::cout << "Total weapons loaded: " << weapons.size() << std::endl;
     printWeapons(weapons);
     findWeapon(weapons);
-    countWeapons(weapons);
-    HigLowAvgData(weapons);
+    int count = countWeapons(weapons);
+    double avg = HigLowAvgData(weapons);
     keyWordSearch(weapons);
+    // sort(weapons);
     return 0;
 }
